@@ -1,0 +1,15 @@
+{
+  "id": "saltybananaslugs-ratslug",
+  "title": "SaltyBananaSlug's RatSlug",
+  "description": "A system-independent anonymous persona, improv, and social deduction party game for Foundry VTT.",
+  "version": "0.1.5.4",
+  "compatibility": { "minimum": "13", "verified": "13" },
+  "authors": [{ "name": "SaltyBananaSlug", "email": "the.Salty.Banana.Slug@gmail.com" }],
+  "esmodules": ["scripts/ratslug.js"],
+  "styles": ["styles/ratslug.css"],
+  "system": [],
+  "socket": true,
+  "url": "",
+  "manifest": "",
+  "download": ""
+}
