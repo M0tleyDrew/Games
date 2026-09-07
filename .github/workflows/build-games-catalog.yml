@@ -1,0 +1,43 @@
+name: Build Foundry Games catalog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sbs-games-catalog
+  cancel-in-progress: true
+
+jobs:
+  build-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build manifests and game packages
+        run: |
+          python .github/scripts/build-games-catalog.py \
+            --repo "$GITHUB_REPOSITORY" \
+            --root "$GITHUB_WORKSPACE" \
+            --out "$RUNNER_TEMP/sbs-games-catalog"
+
+      - name: Publish games-catalog branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/sbs-games-catalog"
+          git init
+          git checkout -b games-catalog
+          git config user.name "SaltyBananaSlug Games Bot"
+          git config user.email "the.Salty.Banana.Slug@gmail.com"
+          git add --all
+          git commit -m "Build Foundry Games catalog from ${GITHUB_SHA}"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin games-catalog
