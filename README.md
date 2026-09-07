@@ -2,6 +2,26 @@
 
 A collection of party-game projects by **SaltyBananaSlug**.
 
+## Installing Games in Foundry VTT
+
+Each Foundry game in this repository gets a permanent manifest URL for installing and updating it.
+
+1. Open **Foundry VTT Setup**.
+2. Go to **Add-on Modules**.
+3. Click **Install Module**.
+4. Copy the game's URL from the table below and paste it into **Manifest URL**.
+5. Click **Install**.
+
+### Direct Manifest URLs
+
+| Game | Version | Foundry Manifest URL |
+| --- | --- | --- |
+| **RatSlug** | **0.1.6.0** | `https://raw.githubusercontent.com/M0tleyDrew/Games/games-catalog/manifests/saltybananaslugs-ratslug.json` |
+
+The manifest URL stays the same between updates. When a game's version changes on `main`, the repository automatically rebuilds its Foundry manifest and versioned install ZIP on the `games-catalog` branch.
+
+---
+
 ## RatSlug
 
 **RatSlug** is a system-independent Foundry VTT v13 social-deduction and improv party game. Players invent ridiculous personas, answer prompts and chat in character, then try to work out which real player is behind each persona.
@@ -41,7 +61,9 @@ The current build is **v0.1.6.0**.
 
 ### Installation
 
-Copy the `saltybananaslugs-ratslug` folder into your Foundry user data `Data/modules/` directory, restart Foundry, enable **SaltyBananaSlug's RatSlug** in your world, and launch it using the button at the bottom of the Players list.
+Use the RatSlug manifest URL in the **Direct Manifest URLs** table above for normal Foundry installation and updates.
+
+For manual local testing, copy the `saltybananaslugs-ratslug` folder into your Foundry user data `Data/modules/` directory, restart Foundry, and enable **SaltyBananaSlug's RatSlug** in your world.
 
 The module is system-independent and targets **Foundry VTT v13**.
 
