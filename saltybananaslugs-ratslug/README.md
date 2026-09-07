@@ -71,9 +71,18 @@ This build keeps the working v0.1.2 startup and display layer, remembers each us
 - The full group is ranked by final score and also shows Favorite Character vote totals.
 - Main and Favorite Character winner summaries include real identities and their relevant totals.
 
+### v0.1.6.0 expanded fake profiles
+
+- Fake profiles now include name, age, pronouns, location, profession, biography, catchphrase, and image.
+- Age, pronouns, location, and profession are stored with the locked persona and remain available for the full game.
+- A dedicated Profiles tab lets everyone browse every locked fake profile without exposing the real player behind it.
+- The player's own locked profile also shows the expanded fake-profile information.
+- Existing v0.1.5.x personas remain compatible; newly added fields simply display as blank when they do not exist.
+
 ## Features
 
-- Players create a persona with a name, biography, catchphrase, and their own uploaded image.
+- Players create a fake profile with a name, age, pronouns, location, profession, biography, catchphrase, and their own uploaded image.
+- Dedicated Profiles tab for browsing the group's fake identities while real-player identities remain hidden.
 - Images are resized locally before being shared, so players do not require Foundry file-upload permission.
 - Anonymous in-character group chat.
 - Mobile-first player interface with a floating launcher and phone-sized touch controls.
