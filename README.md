@@ -10,7 +10,7 @@ The current build is **v0.1.6.0**.
 
 ### How a game works
 
-1. The host starts RatSlug and players create anonymous fake profiles with a name, age, pronouns, location, biography, catchphrase, and image.
+1. The host starts RatSlug and players create anonymous fake profiles with a name, age, pronouns, location, profession, biography, catchphrase, and image.
 2. Once profiles are locked, everyone can browse them from the **Profiles** tab without seeing the real player behind each persona.
 3. The host runs a round of exactly four prompts. Players can answer any unanswered prompt until identity voting opens.
 4. Players can also talk publicly or privately in character while protecting their real identities.
@@ -26,7 +26,7 @@ The current build is **v0.1.6.0**.
 ### Current quality-of-life features
 
 - Mobile-first interface and floating launcher.
-- Expanded fake profiles: name, age, pronouns, location, biography, catchphrase, and image.
+- Expanded fake profiles: name, age, pronouns, location, profession, biography, catchphrase, and image.
 - Dedicated Profiles tab for browsing every locked fake profile while real identities remain hidden.
 - 100 built-in prompts plus custom prompts, no-repeat random drawing, discarding, and deck reset.
 - Old prompts remain answerable until voting opens.
