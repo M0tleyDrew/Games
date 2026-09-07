@@ -231,6 +231,7 @@ function handle(action, userId, p={}) {
       age:cleanAge(p.age),
       pronouns:String(p.pronouns || "").trim().slice(0,50),
       location:String(p.location || "").trim().slice(0,100),
+      profession:String(p.profession || "").trim().slice(0,100),
       bio:String(p.bio || "").trim().slice(0,500),
       catchphrase:String(p.catchphrase || "").trim().slice(0,120),
       image:String(p.image || "").slice(0,400000)
@@ -300,7 +301,7 @@ function openUI() {
 }
 
 function me(){ return game.user.id; }
-function persona(id){ return state.personas[id] || {name:"Unfinished Persona",age:"",pronouns:"",location:"",bio:"",catchphrase:"",image:""}; }
+function persona(id){ return state.personas[id] || {name:"Unfinished Persona",age:"",pronouns:"",location:"",profession:"",bio:"",catchphrase:"",image:""}; }
 function avatar(id){ const p=persona(id); return p.image ? `<img src="${p.image}">` : `<div class="ratslug-placeholder">?</div>`; }
 function metaLine(p) {
   const bits=[];
@@ -340,13 +341,13 @@ function home() {
   const isJoined=state.players.includes(me());
   const locked=Object.prototype.hasOwnProperty.call(state.personas, me());
   const p=persona(me());
-  return `<section><h2>${isJoined ? 'Your Persona' : 'Join the deception'}</h2>${isJoined ? (locked ? `<div class="rs-locked-persona">${avatar(me())}<div><h3>${esc(p.name)} <i class="fas fa-lock"></i></h3>${metaLine(p) ? `<p class="rs-profile-meta">${metaLine(p)}</p>` : ''}${p.bio ? `<p>${esc(p.bio)}</p>` : ''}${p.catchphrase ? `<p><em>${esc(p.catchphrase)}</em></p>` : ''}<small>Persona locked until the host resets the game.</small></div></div>` : `<label>Character name<input id="rs-name" maxlength="40" placeholder="Required"></label><div class="rs-profile-fields"><label>Age<input id="rs-age" maxlength="20" placeholder="e.g. 43 or Ancient"></label><label>Pronouns<input id="rs-pronouns" maxlength="50" placeholder="e.g. she/her"></label></div><label>Location<input id="rs-location" maxlength="100" placeholder="Where does this fake person live?"></label><label>Biography<textarea id="rs-bio" maxlength="500" placeholder="Who are they? What do they do? What weird little life have you invented?"></textarea></label><label>Catchphrase<input id="rs-catch" maxlength="120"></label><div class="ratslug-image-row"><div id="rs-image-preview" class="ratslug-placeholder">?</div><label class="ratslug-upload">Choose persona image<input id="rs-image" type="file" accept="image/*"></label></div><button data-save-persona>Save & Lock Persona</button><button data-leave class="danger">Leave Game</button>`) : `<p>Create a fake identity, answer in character, and determine which liar is which.</p><button data-join>Join RatSlug</button>`}</section>`;
+  return `<section><h2>${isJoined ? 'Your Persona' : 'Join the deception'}</h2>${isJoined ? (locked ? `<div class="rs-locked-persona">${avatar(me())}<div><h3>${esc(p.name)} <i class="fas fa-lock"></i></h3>${metaLine(p) ? `<p class="rs-profile-meta">${metaLine(p)}</p>` : ''}${p.profession ? `<p><strong>Profession:</strong> ${esc(p.profession)}</p>` : ''}${p.bio ? `<p>${esc(p.bio)}</p>` : ''}${p.catchphrase ? `<p><em>${esc(p.catchphrase)}</em></p>` : ''}<small>Persona locked until the host resets the game.</small></div></div>` : `<label>Character name<input id="rs-name" maxlength="40" placeholder="Required"></label><div class="rs-profile-fields"><label>Age<input id="rs-age" maxlength="20" placeholder="e.g. 43 or Ancient"></label><label>Pronouns<input id="rs-pronouns" maxlength="50" placeholder="e.g. she/her"></label></div><label>Location<input id="rs-location" maxlength="100" placeholder="Where does this fake person live?"></label><label>Profession<input id="rs-profession" maxlength="100" placeholder="What do they do for a living?"></label><label>Biography<textarea id="rs-bio" maxlength="500" placeholder="Who are they? What weird little life have you invented?"></textarea></label><label>Catchphrase<input id="rs-catch" maxlength="120"></label><div class="ratslug-image-row"><div id="rs-image-preview" class="ratslug-placeholder">?</div><label class="ratslug-upload">Choose persona image<input id="rs-image" type="file" accept="image/*"></label></div><button data-save-persona>Save & Lock Persona</button><button data-leave class="danger">Leave Game</button>`) : `<p>Create a fake identity, answer in character, and determine which liar is which.</p><button data-join>Join RatSlug</button>`}</section>`;
 }
 
 function profiles() {
   const ids=state.players.filter(id => state.personas[id]);
   if (!ids.length) return `<section><h2>Fake Profiles</h2><p>No locked fake profiles yet.</p></section>`;
-  return `<section class="rs-profiles"><h2>Fake Profiles</h2><p>Everything your fellow liars have claimed about themselves. Real-player identities stay hidden.</p><div class="rs-profile-grid" data-rs-scroll="profiles-grid">${ids.map(id => { const p=persona(id); return `<article class="rs-profile-card">${avatar(id)}<div class="rs-profile-card-body"><h3>${esc(p.name)}</h3>${metaLine(p)?`<p class="rs-profile-meta">${metaLine(p)}</p>`:''}${p.bio?`<p class="rs-profile-bio">${esc(p.bio)}</p>`:'<p class="rs-profile-bio muted">No biography supplied.</p>'}${p.catchphrase?`<blockquote>${esc(p.catchphrase)}</blockquote>`:''}</div></article>`; }).join("")}</div></section>`;
+  return `<section class="rs-profiles"><h2>Fake Profiles</h2><p>Everything your fellow liars have claimed about themselves. Real-player identities stay hidden.</p><div class="rs-profile-grid" data-rs-scroll="profiles-grid">${ids.map(id => { const p=persona(id); return `<article class="rs-profile-card">${avatar(id)}<div class="rs-profile-card-body"><h3>${esc(p.name)}</h3>${metaLine(p)?`<p class="rs-profile-meta">${metaLine(p)}</p>`:''}${p.profession?`<p><strong>Profession:</strong> ${esc(p.profession)}</p>`:''}${p.bio?`<p class="rs-profile-bio">${esc(p.bio)}</p>`:'<p class="rs-profile-bio muted">No biography supplied.</p>'}${p.catchphrase?`<blockquote>${esc(p.catchphrase)}</blockquote>`:''}</div></article>`; }).join("")}</div></section>`;
 }
 
 function prompts() {
@@ -408,6 +409,7 @@ function bind(root) {
       age:q("#rs-age")?.value || "",
       pronouns:q("#rs-pronouns")?.value || "",
       location:q("#rs-location")?.value || "",
+      profession:q("#rs-profession")?.value || "",
       bio:q("#rs-bio")?.value || "",
       catchphrase:q("#rs-catch")?.value || "",
       image:pendingPersonaImage || ""
