@@ -1,0 +1,15 @@
+{
+  "repositoryUrl": "https://github.com/M0tleyDrew/Games",
+  "sourceBranch": "main",
+  "catalogBranch": "games-catalog",
+  "games": [
+    {
+      "id": "saltybananaslugs-ratslug",
+      "title": "SaltyBananaSlug's RatSlug",
+      "version": "0.1.6.0",
+      "folderName": "saltybananaslugs-ratslug",
+      "manifestUrl": "https://raw.githubusercontent.com/M0tleyDrew/Games/games-catalog/manifests/saltybananaslugs-ratslug.json",
+      "downloadUrl": "https://raw.githubusercontent.com/M0tleyDrew/Games/games-catalog/packages/saltybananaslugs-ratslug-v0.1.6.0.zip"
+    }
+  ]
+}
